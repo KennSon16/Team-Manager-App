@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="users-container">
+    <h1>User Registry</h1>
+    <div>
+        <p>A general view of all your team members in your organization</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Admin</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.profile.firstname }} {{ user.profile.lastname }}</td>
+                    <td>{{ user.profile.email }}</td>
+                    <td class="color-red" [ngClass]="{'color-green':user.active}">{{ user.active }}</td>
+                    <td class="color-red" [ngClass]="{'color-green':user.isAdmin}">{{ user.isAdmin }}</td>
+                    <td>{{ user.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button (click)="openForm()">Add User</button>
+    <div class="popup" *ngIf="showForm">
+        <app-add-user-overlay (close)="closeForm()" (userCreated)="onUserCreated()"></app-add-user-overlay>
+    </div>
+</div>

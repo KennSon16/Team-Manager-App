@@ -1,0 +1,39 @@
+<div class="popup">
+    <button class="close-button" (click)="closePopup()"> X </button>
+    <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label class="textlabel" for="firstname">First Name</label>
+            <input class="textfield" id="firstname" formControlName="firstname" />
+        </div>
+        <div>
+            <label class="textlabel" for="lastname">Last Name</label>
+            <input class="textfield" id="lastname" formControlName="lastname" />
+        </div>
+        <div>
+            <label class="textlabel" for="email">E-Mail</label>
+            <input class="textfield" id="email" formControlName="email" />
+        </div>
+        <div>
+            <label class="textlabel" for="phone">Phone Number</label>
+            <input class="textfield" id="phone" formControlName="phone" />
+        </div>
+        <div>
+            <label class="textlabel" for="password">Password</label>
+            <input class="textfield" id="password" formControlName="password" />
+        </div>
+        <div>
+            <label class="textlabel" for="confirmPassword">Confirm Password</label>
+            <input class="textfield" id="confirmPassword" formControlName="confirmPassword" />
+        </div>
+        <div>
+            <label class="textlabel" for="isAdmin">Make user an admin role?</label>
+            <select id="isAdmin" formControlName="isAdmin" required>
+                <option [ngValue]="true">True</option>
+                <option [ngValue]="false">False</option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="createUserForm.invalid">Submit</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>
